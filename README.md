@@ -11,9 +11,12 @@ Ajudar na identificação rápida de falhas recorrentes em arquivos de log.
 - Relatório em CLI
 
 ## Uso
+
+### Saída em JSON
+
 Execute o analisador passando o caminho do arquivo de log:
 
-bash
+```bash
 python log_inspector/analyzer.py /caminho/para/arquivo.log
 
 ## Próximos passos

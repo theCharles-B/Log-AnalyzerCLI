@@ -2,6 +2,7 @@ from collections import Counter
 import re
 import argparse
 from pathlib import Path
+import json
 
 PATTERNS = re.compile(r"(error|fail|warn)", re.IGNORECASE)
 
@@ -25,6 +26,12 @@ def main():
         help="Path to the log file(s) to analyze.",
     )
 
+    parser.add_argument(
+        '--json',
+        action='store_true',
+        help="Output results in JSON format."
+    )
+
     args = parser.parse_args()
 
     if not args.log_files.exists():
@@ -33,7 +40,10 @@ def main():
     
     result = analyze_log(args.log_files)
 
-    print("Analysis Results:")
+    if args.json:
+        print(json.dumps(result, indent=2))
+    else:
+        print("Analysis Results:")
     for key, value in result.items():
         print(f"{key}: {value}")
 
