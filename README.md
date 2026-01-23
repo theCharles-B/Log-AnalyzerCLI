@@ -21,7 +21,5 @@ bash
 python log_inspector/analyzer.py /caminho/para/arquivo.log
 
 ## Próximos passos
-- Suporte a journalctl
-- Exportação para JSON
 - Classificação com IA
 - Alertas automáticos
