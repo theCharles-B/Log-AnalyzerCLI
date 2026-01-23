@@ -3,6 +3,8 @@ import re
 import argparse
 from pathlib import Path
 import json
+import subprocess
+
 
 PATTERNS = re.compile(r"(error|fail|warn)", re.IGNORECASE)
 
@@ -15,6 +17,38 @@ def analyze_log(file_path) -> Counter:
             if match:
                 counter[match.group(1).lower()] += 1
     return counter
+
+def analyze_lines(lines) -> Counter:
+    counter = Counter()
+    for line in lines:
+        match = PATTERNS.search(line)
+        if match:
+            counter[match.group(1).lower()] += 1
+    return counter
+
+def analyze_log(file_path: Path) -> Counter:
+    with file_path.open('r', errors='ignore') as f:
+        return analyze_lines(f)
+    
+def analyze_journalctl() -> Counter:
+    command = [
+        "journalctl",
+        '-p', '4..3',   #warn to error
+        '--no-pager'
+    ]
+
+    result = subprocess.run(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError("journalctl command failed")
+    
+    lines = result.stdout.splitlines()
+    return analyze_lines(lines)
 
 def main():
     parser = argparse.ArgumentParser(

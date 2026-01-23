@@ -13,10 +13,11 @@ Ajudar na identificação rápida de falhas recorrentes em arquivos de log.
 ## Uso
 
 ### Saída em JSON
+### Análise direta do systemd (journalctl)
 
 Execute o analisador passando o caminho do arquivo de log:
 
-```bash
+bash
 python log_inspector/analyzer.py /caminho/para/arquivo.log
 
 ## Próximos passos
