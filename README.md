@@ -1,25 +1,30 @@
-# Log Inspector
+Log Inspector
 
-Ferramenta simples em Python para analisar logs do Linux e identificar padrões de erro.
+Simple Python tool to analyze Linux log files and detect recurring error patterns.
+Goal
 
-## Objetivo
-Ajudar na identificação rápida de falhas recorrentes em arquivos de log.
+Help you quickly spot repeated failures in log files.
+Features (v0.1)
 
-## Funcionalidades (v0.1)
-- Leitura de arquivos de log
-- Contagem de ocorrências de error, warn e fail
-- Relatório em CLI
+    Read log files
 
-## Uso
+    Count occurrences of error, warn, and fail
 
-### Saída em JSON
-### Análise direta do systemd (journalctl)
+    Display a summary report in the CLI
 
-Execute o analisador passando o caminho do arquivo de log:
+Usage
+
+    JSON output
+
+    Direct systemd log analysis via journalctl
+
+    Automated tests with pytest
+
+Run the analyzer by passing the log file path:
 
 bash
-python log_inspector/analyzer.py /caminho/para/arquivo.log
+python log_inspector/analyzer.py /path/to/file.log
 
-## Próximos passos
-- Classificação com IA
-- Alertas automáticos
+```bash
+python log_inspector/analyzer.py /path/to/file.log
+```
